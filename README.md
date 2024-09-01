@@ -27,7 +27,22 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas em s
 git clone <link do repo>
 ```
 
-2. **Instale as dependências:**
+2. **Crie o arquivo .env no diretório do back:**
+
+```bash
+PORT=3000
+
+POSTGRES_HOST="localhost"
+POSTGRES_PORT=5432
+POSTGRES_USER="local_user"
+POSTGRES_DB="local_db"
+POSTGRES_PASSWORD=local_password
+
+DATABASE_URL="postgresql://local_user:local_password@localhost:5432/local_db?schema=public"
+
+```
+
+3. **Instale as dependências:**
 
 - Navegue para o diretório correspondente (front ou back):
 
@@ -35,7 +50,7 @@ git clone <link do repo>
 cd </front ou /back>
 ```
 
-3. **Instale as dependências do projeto:**
+4. **Instale as dependências do projeto:**
 
 Abra um terminal na raiz do projeto e execute o comando abaixo para instalar todas as dependências necessárias:
 
@@ -43,7 +58,7 @@ Abra um terminal na raiz do projeto e execute o comando abaixo para instalar tod
 pnpm install
 ```
 
-4. **Execute o servidor de desenvolvimento:**
+5. **Execute o servidor de desenvolvimento:**
 
 Após a instalação das dependências, inicie o servidor de desenvolvimento com so comandos:
 
