@@ -32,10 +32,10 @@ git clone <link do repo>
 ```bash
 PORT=3000
 
-POSTGRES_HOST="localhost"
+POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
-POSTGRES_USER="local_user"
-POSTGRES_DB="local_db"
+POSTGRES_USER=local_user
+POSTGRES_DB=local_db
 POSTGRES_PASSWORD=local_password
 
 DATABASE_URL="postgresql://local_user:local_password@localhost:5432/local_db?schema=public"
