@@ -17,7 +17,7 @@ export default function Resume() {
     getResume();
 
     return () => {
-      deleteOldTranscrptions();
+      // deleteOldTranscrptions();
     };
   }, []);
 

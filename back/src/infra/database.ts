@@ -2,13 +2,7 @@ import "dotenv/config";
 import { Client } from "pg";
 
 async function query(queryComand: string, values?: (string | null)[]) {
-  const client = new Client({
-    host: process.env.POSTGRES_HOST,
-    port: parseInt(process.env.POSTGRES_PORT ?? "5432"),
-    user: process.env.POSTGRES_USER,
-    database: process.env.POSTGRES_DB,
-    password: process.env.POSTGRES_PASSWORD,
-  });
+  const client = new Client(process.env.PROD_DATABSE_URL);
 
   try {
     await client.connect();

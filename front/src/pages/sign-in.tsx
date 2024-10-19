@@ -71,7 +71,7 @@ export default function SignIn() {
 
   useEffect(() => {
     if (user) {
-      window.location.replace("/meeting");
+      window.location.replace("/");
     }
   }, [user]);
 

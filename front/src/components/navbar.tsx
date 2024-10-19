@@ -1,7 +1,8 @@
 import { useContext } from "react";
-import { buttonVariants } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import { Logo } from "./ui/logo";
 import { UserContext } from "@/contexts/user-context";
+import { LogOut } from "lucide-react";
 
 export function Navbar() {
   const { isLogged } = useContext(UserContext);
@@ -24,6 +25,19 @@ export function Navbar() {
         <a href="/sign-in" className={buttonVariants({ variant: "default" })}>
           Entrar
         </a>
+      </div>
+      <div className={`${isLogged ? null : "hidden"}`}>
+        <Button
+          className="gap-2 hover:text-red-600"
+          variant={"ghost"}
+          onClick={() => {
+            localStorage.clear();
+            window.location.replace("/");
+          }}
+        >
+          Logout
+          <LogOut className="w-4 h-4" />
+        </Button>
       </div>
     </div>
   );

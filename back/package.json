@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "back:run": "tsx src/server.ts",
-    "back:dev": "pnpm run back:docker-up && tsx watch src/server.ts",
+    "back:dev": "tsx watch src/server.ts",
+    "back:dev:member": "tsx watch src/member/index.ts",
+    "back:dev:transcription": "tsx watch src/transcription/index.ts",
+    "back:prod": "pnpm tsx watch src/server.ts",
     "back:build": "tsup src",
     "back:test": "vitest",
     "back:docker-up": "docker compose -f src/infra/compose.yaml up -d",
@@ -13,7 +16,8 @@
     "back:lint:check": "prettier --check .",
     "back:lint:fix": "prettier --write .",
     "back:prisma:migrate": "pnpm prisma migrate dev --name init",
-    "back:prisma:run": "pnpm prisma migrate dev"
+    "back:prisma:run": "pnpm prisma migrate dev",
+    "back:rabbit": "docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4.0-management"
   },
   "prisma": {
     "schema": "src/infra/prisma/schema.prisma"
@@ -23,6 +27,8 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.19.0",
+    "amqplib": "^0.10.4",
+    "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -31,6 +37,7 @@
     "file-type": "^19.4.1",
     "fs": "0.0.1-security",
     "multer": "1.4.5-lts.1",
+    "nodemon": "^3.1.4",
     "openai": "^4.57.0",
     "pg": "^8.12.0",
     "socket.io": "^4.7.5",
@@ -38,6 +45,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/amqplib": "^0.10.5",
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",

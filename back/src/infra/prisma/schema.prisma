@@ -3,28 +3,28 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
+  provider = "cockroachdb"
+  url      = env("PROD_DATABSE_URL")
 }
 
 model User {
-  id        String  @id @default(uuid())
-  name      String
-  cpf       String  @unique
-  email     String  @unique
-  password  String
-  company   String?
-  role      String?
+  id       String  @id @default(uuid())
+  name     String
+  cpf      String  @unique
+  email    String  @unique
+  password String
+  company  String?
+  role     String?
 }
 
 model Meeting {
-  id                String @id @default(uuid())
-  members_id        String[]
-  host_id           String
-  title             String
-  created_at        DateTime @default(now())
-  transcription_id  String?
-  record_id         String?
+  id               String   @id @default(uuid())
+  members_id       String[]
+  host_id          String
+  title            String
+  created_at       DateTime @default(now())
+  transcription_id String?
+  record_id        String?
 }
 
 model Transcription {
@@ -34,8 +34,11 @@ model Transcription {
 }
 
 model Record {
-  id            String @id @default(uuid())
-  id_metting    String
-  recod_file    Bytes
+  id         String @id @default(uuid())
+  id_metting String
+  recod_file Bytes
 }
 
+enum crdb_internal_region {
+  gcp_southamerica_east1 @map("gcp-southamerica-east1")
+}

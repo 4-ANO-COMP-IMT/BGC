@@ -1,8 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { LampContainer } from "@/components/ui/lamp";
+import { UserContext } from "@/contexts/user-context";
 import { motion } from "framer-motion";
+import { useContext } from "react";
 
 function Home() {
+  const { isLogged } = useContext(UserContext);
+
   return (
     <LampContainer className="pt-96 h-screen">
       <div className="flex flex-col items-center h-full pt-48">
@@ -45,12 +49,15 @@ function Home() {
           }}
           className="w-1/2 pt-10 flex flex-row justify-around"
         >
-          <Button variant={"ghost"} size={"lg"}>
+          <Button disabled variant={"ghost"} size={"lg"}>
             Criar Reunião
           </Button>
           <Button
+            disabled={!isLogged}
             onClick={() => {
-              window.location.replace("/meeting");
+              if (isLogged) {
+                window.location.replace("/meeting");
+              }
             }}
           >
             Entrar em Reunião
